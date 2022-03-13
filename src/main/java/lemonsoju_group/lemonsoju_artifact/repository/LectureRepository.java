@@ -1,6 +1,7 @@
 package lemonsoju_group.lemonsoju_artifact.repository;
 
 import lemonsoju_group.lemonsoju_artifact.domain.Lecture;
+import lemonsoju_group.lemonsoju_artifact.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class ClassRepository {
+public class LectureRepository {
 
     private final EntityManager em;
 
@@ -23,12 +24,12 @@ public class ClassRepository {
     }
 
     public List<Lecture> findAll() {
-        return em.createQuery("select i from Lecture l",Lecture.class).getResultList();
+        return em.createQuery("select l from Lecture l",Lecture.class).getResultList();
     }
 
-    public List<Lecture> findByUidAll(String uid){
-        return em.createQuery("select u from Lecture l where l.uid = :uid", Lecture.class)
-                .setParameter("uid", uid)
+    public List<Lecture> findByUidAll(Long id){
+        return em.createQuery("select l from Lecture l where l.user.id = :userId", Lecture.class)
+                .setParameter("userId", id)
                 .getResultList();
     }
 }
