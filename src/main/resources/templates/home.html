@@ -8,10 +8,18 @@
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
     <div class="jumbotron">
-        <h1>HELLO SHOP</h1>
+        <h1>Welcome!</h1>
         <p class="lead">회원 기능</p>
         <p>
             <a class="btn btn-lg btn-secondary" href="/logout">로그아웃</a>
+        </p>
+        <p class="lead">교수 기능</p>
+        <p>
+            <a class="btn btn-lg btn-dark" href="/logout">내강의목록</a>
+        </p>
+        <p class="lead">학생 기능</p>
+        <p>
+            <a class="btn btn-lg btn-info" href="/logout">전체강의목록</a>
         </p>
     </div>
     <div th:replace="fragments/footer :: footer" />

@@ -9,13 +9,13 @@ import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter @Setter
-public class Class {
+public class Lecture {
 
     @Id
     @GeneratedValue
-    @Column(name = "class_id")
+    @Column(name = "lecture_id")
     private Long id;
-    private String className;
+    private String lectureName;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id")

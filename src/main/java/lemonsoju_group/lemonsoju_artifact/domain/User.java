@@ -18,4 +18,7 @@ public class User {
     private String pwd;
     private String name;
     private Long studentId;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
