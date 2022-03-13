@@ -38,7 +38,7 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String main()
+    public String main(Model model)
     {
         return "home";
     }
