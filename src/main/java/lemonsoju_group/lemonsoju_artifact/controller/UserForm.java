@@ -1,5 +1,6 @@
 package lemonsoju_group.lemonsoju_artifact.controller;
 
+import lemonsoju_group.lemonsoju_artifact.domain.Role;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,4 +15,7 @@ public class UserForm {
     private String pwd;
     @NotEmpty(message = "회원 이름은 필수입니다.")
     private String name;
+
+    private Long studentId;
+    private Role role;
 }

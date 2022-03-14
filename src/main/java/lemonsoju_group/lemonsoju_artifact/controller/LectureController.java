@@ -27,4 +27,13 @@ public class LectureController {
         model.addAttribute("lectures", findLectures);
         return "/lectures/myLectureList";
     }
+
+    @GetMapping("/allLectures")
+    public String allLectures(Model model) {
+
+        List<Lecture> findLectures = lectureService.findAllLectures();
+        model.addAttribute("lectures", findLectures);
+        return "/lectures/allLectureList";
+    }
+
 }
