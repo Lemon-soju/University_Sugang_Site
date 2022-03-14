@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Getter @Setter
 public class UserForm {
@@ -15,7 +16,8 @@ public class UserForm {
     private String pwd;
     @NotEmpty(message = "회원 이름은 필수입니다.")
     private String name;
-
+    @NotNull(message = "회원 학번은 필수입니다.")
     private Long studentId;
+    @NotNull(message = "회원 신분은 필수입니다.")
     private Role role;
 }
