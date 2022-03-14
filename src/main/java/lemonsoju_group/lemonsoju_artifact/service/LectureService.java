@@ -20,8 +20,14 @@ public class LectureService {
         return lectureRepository.findByUidAll(id);
     }
 
+    public List<Lecture> findAllLectures(){
+        return lectureRepository.findAll();
+    }
+
     @Transactional
     public Long save(Lecture lecture){
         return lectureRepository.save(lecture);
     }
 }
+
+

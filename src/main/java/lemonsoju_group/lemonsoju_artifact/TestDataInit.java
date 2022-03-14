@@ -30,6 +30,7 @@ public class TestDataInit {
         userA.setUid("lemon");
         userA.setPwd("asd123");
         userA.setName("lemon_soju");
+        userA.setStudentId(2017320162L);
         userA.setRole(Role.STUDENT);
         userService.join(userA);
 
@@ -40,6 +41,7 @@ public class TestDataInit {
         userB.setUid("lemon2");
         userB.setPwd("asd123");
         userB.setName("James");
+        userB.setStudentId(2018613142L);
         userB.setRole(Role.PROFESSOR);
         userService.join(userB);
 
@@ -47,6 +49,7 @@ public class TestDataInit {
         userC.setUid("lemon3");
         userC.setPwd("asd123");
         userC.setName("Charlie");
+        userC.setStudentId(2014326122L);
         userC.setRole(Role.PROFESSOR);
         userService.join(userC);
 
