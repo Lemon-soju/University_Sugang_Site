@@ -61,10 +61,4 @@ public class LectureController {
         return "redirect:/";
     }
 
-
-//        return "redirect:/myLectures";
-
-
-    //***************
-
 }

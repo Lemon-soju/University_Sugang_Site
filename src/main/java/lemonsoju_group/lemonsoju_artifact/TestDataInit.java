@@ -1,9 +1,11 @@
 package lemonsoju_group.lemonsoju_artifact;
 
 import lemonsoju_group.lemonsoju_artifact.domain.Lecture;
+import lemonsoju_group.lemonsoju_artifact.domain.Post;
 import lemonsoju_group.lemonsoju_artifact.domain.Role;
 import lemonsoju_group.lemonsoju_artifact.domain.User;
 import lemonsoju_group.lemonsoju_artifact.service.LectureService;
+import lemonsoju_group.lemonsoju_artifact.service.PostService;
 import lemonsoju_group.lemonsoju_artifact.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -16,6 +18,7 @@ public class TestDataInit {
 
     private final UserService userService;
     private final LectureService lectureService;
+    private final PostService postService;
 
     /**
      * 테스트용 데이터 추가
@@ -65,5 +68,16 @@ public class TestDataInit {
         lectureB.setLectureName("PYTHON Programming");
         lectureB.setUser(userC);
         lectureService.save(lectureB);
+
+        /**
+         * 테스트 강의게시물 추가
+         */
+        Post postA = new Post();
+        postA.setTitle("test01");
+        postA.setContent("Hello~ This course is Java Programming!!");
+        postA.setUser(userB);
+        postA.setLecture(lectureA);
+        postService.save(postA);
+
     }
 }
