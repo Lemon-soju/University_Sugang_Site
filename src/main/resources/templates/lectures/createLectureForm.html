@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<style>
+ .fieldError {
+ border-color: #bd2130;
+ }
+</style>
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <form role="form" action="/createLecture" th:object="${lectureForm}"
+          method="post">
+        <div class="form-group">
+            <label th:for="lectureName">lectureName</label>
+            <input type="text" th:field="*{lectureName}" class="form-control"
+                   placeholder="강의명을 입력하세요"
+                   th:class="${#fields.hasErrors('lectureName')}? 'form-control
+fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('lectureName')}"
+               th:errors="*{lectureName}">Incorrect date</p>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br/>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+</body>
+</html>
