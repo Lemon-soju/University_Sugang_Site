@@ -11,7 +11,8 @@ import java.util.List;
 @Getter @Setter
 public class User {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "user_id")
     private Long id;
     private String uid;
@@ -21,4 +22,9 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    //***************************
+    @OneToMany
+    private List<Lecture> lectures;
+    //***************************8
 }

@@ -26,7 +26,7 @@ public class LectureController {
     @GetMapping("/myLectures")
     public String myLectures(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser, Model model) {
 
-        List<Lecture> findLectures = lectureService.findMyLectures(loginUser.getId());
+        List<Lecture> findLectures = lectureService.findLecturesByUserId(loginUser.getId());
         model.addAttribute("lectures", findLectures);
         return "/lectures/myLectureList";
     }

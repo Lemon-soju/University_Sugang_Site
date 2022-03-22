@@ -5,22 +5,24 @@
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
     <div>
-        <h1>내 강의목록</h1>
+        <h1>전체강의목록</h1>
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>코스명</th>
                 <th>교수명</th>
-                <th>게시물 작성</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="lecture : ${lectures}">
                 <td th:text="${lecture.lectureName}"></td>
                 <td th:text="${lecture.user.name}"></td>
+<!--               ****************************** -->
                 <td>
-                    <a class="btn btn-lg btn-dark" th:href="@{/posts/addPost/{lectureId} (lectureId=${lecture.id})}">작성</a>
+                    <a href="#" th:href="@{/suGang/{id}/edit (id=${lecture.id})}"
+                       class="btn btn-primary" role="button">수강신청</a>
                 </td>
+                <!--                *****************************-->
             </tr>
             </tbody>
         </table>

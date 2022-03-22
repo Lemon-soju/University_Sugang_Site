@@ -65,9 +65,16 @@ public class TestDataInit {
         lectureService.save(lectureA);
 
         Lecture lectureB = new Lecture();
-        lectureB.setLectureName("PYTHON Programming");
-        lectureB.setUser(userC);
+        lectureB.setLectureName("Advanced Hacking Practice");
+        lectureB.setUser(userB);
         lectureService.save(lectureB);
+
+        Lecture lectureC = new Lecture();
+        lectureC.setLectureName("PYTHON Programming");
+        lectureC.setUser(userC);
+        lectureService.save(lectureC);
+
+
 
         /**
          * 테스트 강의게시물 추가
@@ -79,5 +86,18 @@ public class TestDataInit {
         postA.setLecture(lectureA);
         postService.save(postA);
 
+        Post postB = new Post();
+        postB.setTitle("test02");
+        postB.setContent("Assignment is in Blackboard");
+        postB.setUser(userB);
+        postB.setLecture(lectureA);
+        postService.save(postB);
+
+        Post postC = new Post();
+        postC.setTitle("test03");
+        postC.setContent("This course is Advanced Hacking Practice");
+        postC.setUser(userB);
+        postC.setLecture(lectureB);
+        postService.save(postC);
     }
 }
