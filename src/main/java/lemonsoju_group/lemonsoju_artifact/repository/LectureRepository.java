@@ -27,7 +27,7 @@ public class LectureRepository {
         return em.createQuery("select l from Lecture l",Lecture.class).getResultList();
     }
 
-    public List<Lecture> findByUidAll(Long id){
+    public List<Lecture> findAllByUserId(Long id){
         return em.createQuery("select l from Lecture l where l.user.id = :userId", Lecture.class)
                 .setParameter("userId", id)
                 .getResultList();

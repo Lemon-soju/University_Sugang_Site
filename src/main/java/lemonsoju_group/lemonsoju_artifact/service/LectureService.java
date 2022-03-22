@@ -16,12 +16,16 @@ public class LectureService {
 
     private final LectureRepository lectureRepository;
 
-    public List<Lecture> findMyLectures(Long id){
-        return lectureRepository.findByUidAll(id);
+    public List<Lecture> findLecturesByUserId(Long id){
+        return lectureRepository.findAllByUserId(id);
     }
 
     public List<Lecture> findAllLectures(){
         return lectureRepository.findAll();
+    }
+
+    public Lecture findLectureById(Long id){
+        return lectureRepository.findOne(id);
     }
 
     @Transactional
