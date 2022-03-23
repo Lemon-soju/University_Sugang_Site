@@ -29,7 +29,7 @@ public class LoginController {
 
         //세션에 회원 데이터가 없으면 home
         if (loginUser == null) {
-            return "login";
+            return "/logins/login";
         }
 
         //세션이 유지되면 로그인으로 이동
@@ -41,21 +41,21 @@ public class LoginController {
     public String loginForm(Model model){
         model.addAttribute("loginForm", new LoginForm());
         log.info("login!!");
-        return "loginForm";
+        return "/logins/loginForm";
     }
 
     @PostMapping("/login")
     public String verify(@Valid LoginForm form, BindingResult bindingResult, HttpServletRequest request){
 
         if (bindingResult.hasErrors()){
-            return "loginForm";
+            return "/logins/loginForm";
         }
 
         User loginUser = loginService.login(form.getUid(), form.getPwd());
 
         if (loginUser == null){
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
-            return "loginForm";
+            return "/logins/loginForm";
         }
 
         //로그인 성공 처리
