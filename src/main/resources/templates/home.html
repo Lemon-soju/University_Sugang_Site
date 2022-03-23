@@ -13,11 +13,16 @@
         <p>
             <a class="btn btn-lg btn-secondary" href="/logout">로그아웃</a>
         </p>
+    </div>
+
+    <div th:if="${loginRole.toString().equals('PROFESSOR')}">
         <p class="lead">교수 기능</p>
         <p>
             <a class="btn btn-lg btn-dark" href="/myLectures">내강의목록</a>
             <a class="btn btn-lg btn-dark" href="/createLecture">강의등록</a>
         </p>
+    </div>
+    <div th:if="${loginRole.toString().equals('STUDENT')}">
         <p class="lead">학생 기능</p>
         <p>
             <a class="btn btn-lg btn-info" href="/allLectures">전체강의목록</a>
