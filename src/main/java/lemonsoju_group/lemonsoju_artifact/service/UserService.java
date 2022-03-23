@@ -1,6 +1,8 @@
 package lemonsoju_group.lemonsoju_artifact.service;
 
+import lemonsoju_group.lemonsoju_artifact.domain.Lecture;
 import lemonsoju_group.lemonsoju_artifact.domain.User;
+import lemonsoju_group.lemonsoju_artifact.repository.LectureRepository;
 import lemonsoju_group.lemonsoju_artifact.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +19,7 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final LectureRepository lectureRepository;
 
     /**
      * 회원 가입
@@ -28,12 +31,25 @@ public class UserService {
         return user.getId();
     }
 
+    /**
+     * 유저 수강신청 추가
+     */
+    @Transactional
+    public Long suGangSave(Long userId, Long lectureId) {
+        Lecture lecture = lectureRepository.findOne(lectureId);
+        User user = userRepository.findOne(userId);
+        user.getLectures().add(lecture);
+        userRepository.save(user);
+        return user.getId();
+    }
+
     private void validateDuplicateUser(User user) {
         Optional<User> findUsers = userRepository.findByUid(user.getUid());
         if (!findUsers.isEmpty()) {
             throw new IllegalStateException("Already Existing User");
         }
     }
+
 
     /**
      * 회원 전체 조회

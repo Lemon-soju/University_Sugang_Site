@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+    <div>
+        <h1>전체강의목록</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>코스명</th>
+                <th>교수명</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="lecture : ${user.lectures}">
+                <td th:text="${lecture.lectureName}"></td>
+                <td th:text="${lecture.user.name}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+</body>
+</html>

@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -26,16 +28,7 @@ public class TestDataInit {
     @PostConstruct
     public void init() {
 
-        /**
-         * 테스트 학생 유저 추가
-         */
-        User userA = new User();
-        userA.setUid("lemon");
-        userA.setPwd("asd123");
-        userA.setName("lemon_soju");
-        userA.setStudentId(2017320162L);
-        userA.setRole(Role.STUDENT);
-        userService.join(userA);
+
 
         /**
          * 테스트 교수 유저 추가
@@ -74,7 +67,21 @@ public class TestDataInit {
         lectureC.setUser(userC);
         lectureService.save(lectureC);
 
-
+        /**
+         * 테스트 학생 유저 추가
+         */
+        User userA = new User();
+        userA.setUid("lemon");
+        userA.setPwd("asd123");
+        userA.setName("lemon_soju");
+        userA.setStudentId(2017320162L);
+        userA.setRole(Role.STUDENT);
+        if (userA.getLectures() == null){
+            List<Lecture> lectures = new ArrayList<Lecture>();
+            userA.setLectures(lectures);
+        }
+        userA.getLectures().add(lectureA);
+        userService.join(userA);
 
         /**
          * 테스트 강의게시물 추가
