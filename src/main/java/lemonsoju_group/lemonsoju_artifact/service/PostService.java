@@ -25,6 +25,10 @@ public class PostService {
         return postRepository.findAll();
     }
 
+    public Post findPostById(Long id){
+        return postRepository.findPost(id);
+    }
+
     @Transactional
     public Long save(Post post){
         return postRepository.save(post);
