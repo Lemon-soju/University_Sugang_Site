@@ -56,4 +56,12 @@ public class PostController {
         model.addAttribute("posts", findPosts);
         return "/posts/allPostList";
     }
+
+    @GetMapping("/posts/{id}")
+    public String detail(@PathVariable("id") Long lectureId, Model model)
+    {
+        Post post = postService.findPostById(lectureId);
+        model.addAttribute("post", post);
+        return "/posts/detail";
+    }
 }

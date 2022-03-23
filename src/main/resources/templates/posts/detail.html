@@ -9,17 +9,12 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>제목</th>
-                <th>교수</th>
-                <th>강의명</th>
+                <th>제목: <a th:text="${post.title}"></a></th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="post : ${posts}">
-                <td><a href="#" th:href="@{/posts/{id} (id=${post.id})}" th:text="${post.title}"></a></td>
-                <td th:text="${post.user.name}"></td>
-                <td th:text="${post.lecture.lectureName}"></td>
-            </tr>
+            <td th:text="${post.content}"></td>
+
             </tbody>
         </table>
     </div>
