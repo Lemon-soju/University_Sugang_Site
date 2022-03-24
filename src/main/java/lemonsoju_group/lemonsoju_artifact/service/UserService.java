@@ -6,6 +6,8 @@ import lemonsoju_group.lemonsoju_artifact.repository.LectureRepository;
 import lemonsoju_group.lemonsoju_artifact.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,15 +23,23 @@ public class UserService {
     private final UserRepository userRepository;
     private final LectureRepository lectureRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     /**
      * 회원 가입
      */
     @Transactional
     public Long join(User user) {
+
+        String encodePwd = passwordEncoder.encode(user.getPwd());
+        user.setPwd(encodePwd);
+
         validateDuplicateUser(user);
         userRepository.save(user);
         return user.getId();
     }
+
 
     /**
      * 유저 수강신청 추가
