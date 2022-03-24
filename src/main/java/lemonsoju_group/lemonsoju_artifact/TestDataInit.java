@@ -8,6 +8,8 @@ import lemonsoju_group.lemonsoju_artifact.service.LectureService;
 import lemonsoju_group.lemonsoju_artifact.service.PostService;
 import lemonsoju_group.lemonsoju_artifact.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -22,6 +24,9 @@ public class TestDataInit {
     private final LectureService lectureService;
     private final PostService postService;
 
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
+
     /**
      * 테스트용 데이터 추가
      */
@@ -33,6 +38,10 @@ public class TestDataInit {
         /**
          * 테스트 교수 유저 추가
          */
+
+//        userB.setPwd(passwordEncoder.encode("asd123"));
+
+
         User userB = new User();
         userB.setUid("lemon2");
         userB.setPwd("asd123");
