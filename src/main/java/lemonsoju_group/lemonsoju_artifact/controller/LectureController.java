@@ -2,14 +2,17 @@ package lemonsoju_group.lemonsoju_artifact.controller;
 
 import lemonsoju_group.lemonsoju_artifact.SessionConst;
 import lemonsoju_group.lemonsoju_artifact.domain.Lecture;
+import lemonsoju_group.lemonsoju_artifact.domain.Post;
 import lemonsoju_group.lemonsoju_artifact.domain.User;
 import lemonsoju_group.lemonsoju_artifact.service.LectureService;
+import lemonsoju_group.lemonsoju_artifact.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -22,6 +25,7 @@ import java.util.List;
 public class LectureController {
 
     private final LectureService lectureService;
+    private final PostService postService;
 
     @GetMapping("/myLectures")
     public String myLectures(@SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser, Model model) {
@@ -60,5 +64,17 @@ public class LectureController {
         lectureService.save(lecture);
         return "redirect:/myLectures";
     }
+
+
+    @GetMapping("/lectures/{id}")
+    public String postByLecture(@PathVariable("id") Long lectureId, Model model)
+    {
+        List<Post> posts = postService.findPostsByLectureId(lectureId);
+        model.addAttribute("posts", posts);
+        return "/posts/postsByLecture";
+    }
+
+
+
 
 }
