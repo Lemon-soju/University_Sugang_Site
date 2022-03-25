@@ -115,5 +115,12 @@ public class TestDataInit {
         postC.setUser(userB);
         postC.setLecture(lectureB);
         postService.save(postC);
+
+
+        /**
+         * 학생 내 수강신청 목록 추가
+         */
+        userA.addLecture(lectureC);
+        userService.suGangSave(userA.getId(), lectureC.getId());
     }
 }

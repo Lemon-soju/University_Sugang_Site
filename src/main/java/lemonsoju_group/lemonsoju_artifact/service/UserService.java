@@ -48,7 +48,7 @@ public class UserService {
     public Long suGangSave(Long userId, Long lectureId) {
         Lecture lecture = lectureRepository.findOne(lectureId);
         User user = userRepository.findOne(userId);
-        user.getLectures().add(lecture);
+        user.addLecture(lecture);
         userRepository.save(user);
         return user.getId();
     }

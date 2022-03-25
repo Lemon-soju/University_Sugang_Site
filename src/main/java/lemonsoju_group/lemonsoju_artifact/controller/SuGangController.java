@@ -43,10 +43,22 @@ public class SuGangController {
 
 
         Long loginUserId = loginUser.getId();
+        log.info("!!!!!!!!!!!!");
         Long userId = userService.suGangSave(loginUserId, lectureId);
+
         User updateUser = userService.findOne(userId);
+
+        log.info("{}",updateUser.getLectures());
         model.addAttribute("user", updateUser);
         return "/suGangs/mySuGangList";
     }
 
+    @GetMapping("/mySuGang")
+    public String suGang(Model model, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser)
+    {
+        Long loginUserId = loginUser.getId();
+        User user = userService.findOne(loginUserId); // Lazy 로딩을 위해서
+        model.addAttribute("user", user);
+        return "/suGangs/mySuGangList";
+    }
 }
