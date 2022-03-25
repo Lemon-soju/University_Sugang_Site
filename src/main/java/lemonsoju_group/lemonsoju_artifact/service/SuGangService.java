@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -25,8 +26,19 @@ public class SuGangService {
      */
     @Transactional
     public Long suGangSave(SuGang suGang) {
+        validateDuplicateUser(suGang);
         return suGangRepository.save(suGang);
     }
+
+    // 중복으로 수강신청을 못하도록 체크
+    private void validateDuplicateUser(SuGang sugang) {
+        List<SuGang> findSuGangs = suGangRepository.findSuGang(sugang.getUser(), sugang.getLecture());
+
+        if (!findSuGangs.isEmpty()) {
+            throw new IllegalStateException("Already Existing SuGang");
+        }
+    }
+
 
 
     /**

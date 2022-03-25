@@ -77,7 +77,6 @@ public class TestDataInit {
         userA.setName("lemon_soju");
         userA.setStudentId(2017320162L);
         userA.setRole(Role.STUDENT);
-        userA.getLectures().add(lectureA);
         userService.join(userA);
 
         /**

@@ -36,14 +36,10 @@ public class UserService {
 
         String encodePwd = passwordEncoder.encode(user.getPwd());
         user.setPwd(encodePwd);
-
         validateDuplicateUser(user);
         userRepository.save(user);
         return user.getId();
     }
-
-
-
 
     private void validateDuplicateUser(User user) {
         Optional<User> findUsers = userRepository.findByUid(user.getUid());
@@ -52,17 +48,14 @@ public class UserService {
         }
     }
 
-
-            /**
-             * 회원 전체 조회
-             */
-            public List<User> findUsers(){
+    /**
+     * 회원 전체 조회
+     */
+    public List<User> findUsers(){
                 return userRepository.findAll();
             }
 
     public User findOne(Long userId){
         return userRepository.findOne(userId);
     }
-
-
 }
