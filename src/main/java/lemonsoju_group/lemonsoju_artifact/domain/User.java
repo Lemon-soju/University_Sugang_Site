@@ -23,8 +23,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    //***************************
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Lecture> lectures;
-    //***************************8
+
 }
