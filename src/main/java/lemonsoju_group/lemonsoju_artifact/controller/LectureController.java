@@ -58,7 +58,7 @@ public class LectureController {
         lecture.setLectureName(form.getLectureName());
         lecture.setUser(loginUser);
         lectureService.save(lecture);
-        return "redirect:/";
+        return "redirect:/myLectures";
     }
 
 }
