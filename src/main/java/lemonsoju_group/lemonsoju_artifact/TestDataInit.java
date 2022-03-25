@@ -1,11 +1,9 @@
 package lemonsoju_group.lemonsoju_artifact;
 
-import lemonsoju_group.lemonsoju_artifact.domain.Lecture;
-import lemonsoju_group.lemonsoju_artifact.domain.Post;
-import lemonsoju_group.lemonsoju_artifact.domain.Role;
-import lemonsoju_group.lemonsoju_artifact.domain.User;
+import lemonsoju_group.lemonsoju_artifact.domain.*;
 import lemonsoju_group.lemonsoju_artifact.service.LectureService;
 import lemonsoju_group.lemonsoju_artifact.service.PostService;
+import lemonsoju_group.lemonsoju_artifact.service.SuGangService;
 import lemonsoju_group.lemonsoju_artifact.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +21,8 @@ public class TestDataInit {
     private final UserService userService;
     private final LectureService lectureService;
     private final PostService postService;
+    private final SuGangService suGangService;
 
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
 
     /**
      * 테스트용 데이터 추가
@@ -34,14 +31,9 @@ public class TestDataInit {
     public void init() {
 
 
-
         /**
          * 테스트 교수 유저 추가
          */
-
-//        userB.setPwd(passwordEncoder.encode("asd123"));
-
-
         User userB = new User();
         userB.setUid("lemon2");
         userB.setPwd("asd123");
@@ -85,10 +77,6 @@ public class TestDataInit {
         userA.setName("lemon_soju");
         userA.setStudentId(2017320162L);
         userA.setRole(Role.STUDENT);
-        if (userA.getLectures() == null){
-            List<Lecture> lectures = new ArrayList<Lecture>();
-            userA.setLectures(lectures);
-        }
         userA.getLectures().add(lectureA);
         userService.join(userA);
 
@@ -120,7 +108,9 @@ public class TestDataInit {
         /**
          * 학생 내 수강신청 목록 추가
          */
-        userA.addLecture(lectureC);
-        userService.suGangSave(userA.getId(), lectureC.getId());
+        SuGang suGangA = new SuGang();
+        suGangA.setUser(userA);
+        suGangA.setLecture(lectureC);
+        suGangService.suGangSave(suGangA);
     }
 }

@@ -23,11 +23,11 @@ public class User {
     private Role role;
 
     @OneToMany(mappedBy = "user")
-    private List<Lecture> lectures;
+    private List<Lecture> lectures = new ArrayList<Lecture>();
 
     //== 연관관계 메서드 ==//
     public void addLecture(Lecture lecture){
-        lectures.add(lecture); // OrderItem를 Order에 저장
-        lecture.setUser(this); // Order를 orderItem에 저장
+        lectures.add(lecture);
+        lecture.setUser(this);
     }
 }

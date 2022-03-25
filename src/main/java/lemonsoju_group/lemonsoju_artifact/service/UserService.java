@@ -1,8 +1,10 @@
 package lemonsoju_group.lemonsoju_artifact.service;
 
 import lemonsoju_group.lemonsoju_artifact.domain.Lecture;
+import lemonsoju_group.lemonsoju_artifact.domain.SuGang;
 import lemonsoju_group.lemonsoju_artifact.domain.User;
 import lemonsoju_group.lemonsoju_artifact.repository.LectureRepository;
+import lemonsoju_group.lemonsoju_artifact.repository.SuGangRepository;
 import lemonsoju_group.lemonsoju_artifact.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,17 +43,7 @@ public class UserService {
     }
 
 
-    /**
-     * 유저 수강신청 추가
-     */
-    @Transactional
-    public Long suGangSave(Long userId, Long lectureId) {
-        Lecture lecture = lectureRepository.findOne(lectureId);
-        User user = userRepository.findOne(userId);
-        user.addLecture(lecture);
-        userRepository.save(user);
-        return user.getId();
-    }
+
 
     private void validateDuplicateUser(User user) {
         Optional<User> findUsers = userRepository.findByUid(user.getUid());
@@ -61,12 +53,12 @@ public class UserService {
     }
 
 
-    /**
-     * 회원 전체 조회
-     */
-    public List<User> findUsers(){
-        return userRepository.findAll();
-    }
+            /**
+             * 회원 전체 조회
+             */
+            public List<User> findUsers(){
+                return userRepository.findAll();
+            }
 
     public User findOne(Long userId){
         return userRepository.findOne(userId);

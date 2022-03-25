@@ -5,7 +5,7 @@
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
     <div>
-        <h1>전체강의목록</h1>
+        <h1>수강신청된 강의목록</h1>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -14,7 +14,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="lecture : ${user.lectures}">
+            <tr th:each="lecture : ${lectures}">
                 <td th:text="${lecture.lectureName}"></td>
                 <td th:text="${lecture.user.name}"></td>
 
