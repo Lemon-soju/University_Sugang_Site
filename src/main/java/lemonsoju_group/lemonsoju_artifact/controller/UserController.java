@@ -38,7 +38,6 @@ public class UserController {
             return "users/createUserForm";
         }
 
-
         User user = new User();
         user.setUid(form.getUid());
         user.setPwd(form.getPwd());
