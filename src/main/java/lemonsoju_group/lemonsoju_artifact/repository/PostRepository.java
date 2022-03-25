@@ -19,6 +19,11 @@ public class PostRepository {
         return post.getId();
     }
 
+    public List<Post> findPostsByLectureId(Long id){
+        return em.createQuery("select p from Post p where p.lecture.id = :id", Post.class)
+                .setParameter("id", id)
+                .getResultList();
+    }
 
     public Post findPost(Long id){
         return em.find(Post.class, id);

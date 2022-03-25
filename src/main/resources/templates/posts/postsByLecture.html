@@ -5,21 +5,21 @@
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
     <div>
-        <h1>전체강의목록</h1>
+        <h1>게시물목록</h1>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>코스명</th>
-                <th>교수명</th>
+                <th>제목</th>
+                <th>교수</th>
+                <th>강의명</th>
             </tr>
             </thead>
             <tbody>
-
-            <tr th:each="lecture : ${lectures}">
-                <td><a href="#" th:href="@{/lectures/{id} (id=${lecture.id})}" th:text="${lecture.lectureName}"></a></td>
-                <td th:text="${lecture.user.name}"></td>
+            <tr th:each="post : ${posts}">
+                <td><a href="#" th:href="@{/posts/{id} (id=${post.id})}" th:text="${post.title}"></a></td>
+                <td th:text="${post.user.name}"></td>
+                <td th:text="${post.lecture.lectureName}"></td>
             </tr>
-
             </tbody>
         </table>
     </div>

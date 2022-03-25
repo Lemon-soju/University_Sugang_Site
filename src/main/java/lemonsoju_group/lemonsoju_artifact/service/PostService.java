@@ -29,6 +29,11 @@ public class PostService {
         return postRepository.findPost(id);
     }
 
+    public List<Post> findPostsByLectureId(Long id){
+        return postRepository.findPostsByLectureId(id);
+    }
+
+
     @Transactional
     public Long save(Post post){
         return postRepository.save(post);
