@@ -15,7 +15,7 @@
             </thead>
             <tbody>
             <tr th:each="lecture : ${lectures}">
-                <td th:text="${lecture.lectureName}"></td>
+                <td><a href="#" th:href="@{/lectures/{id} (id=${lecture.id})}" th:text="${lecture.lectureName}"></a></td>
                 <td th:text="${lecture.user.name}"></td>
 
             </tr>

@@ -11,9 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +39,8 @@ public class SuGangController {
     }
 
     @GetMapping("/suGang/{lectureId}/add")
-    public String suGang(Model model, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser, @PathVariable("lectureId") Long lectureId)
+    public String suGang(Model model, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser,
+                         @PathVariable("lectureId") Long lectureId)
     {
         SuGang suGang = new SuGang();
         Lecture lecture = lectureService.findLectureById(lectureId);
@@ -50,21 +49,26 @@ public class SuGangController {
         suGang.setLecture(lecture);
         suGangService.suGangSave(suGang);
 
-
-        List<Lecture> lectures = suGangService.findLecturesById(loginUser.getId());
-
-        model.addAttribute("lectures", lectures);
-        return "/suGangs/mySuGangList";
+        return "redirect:/suGang/mySuGangListPRG";
     }
+
+    // /suGang/{lectureId}/add 에서 뒤로가기를 하거나 새로고침할때
+    // 추가가 한번 더 요청되는 문제를 방지하기 위해서 리다이렉트를 이용해 해결
+    @GetMapping("/suGang/mySuGangListPRG")
+    public String suGangPRG(Model model, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser)
+    {
+        List<Lecture> lectures = suGangService.findLecturesById(loginUser.getId());
+        model.addAttribute("lectures", lectures);
+        return "suGangs/mySuGangList";
+    }
+
 
     @GetMapping("/mySuGang")
     public String suGang(Model model, @SessionAttribute(name = SessionConst.LOGIN_USER, required = false) User loginUser)
     {
         Long loginUserId = loginUser.getId();
-        log.info("!!!!");
         List<Lecture> lectures = suGangService.findLecturesById(loginUserId);
         model.addAttribute("lectures", lectures);
-        log.info("@@@@");
         return "/suGangs/mySuGangList";
     }
 }

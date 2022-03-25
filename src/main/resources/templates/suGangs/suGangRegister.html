@@ -17,12 +17,10 @@
             <tr th:each="lecture : ${lectures}">
                 <td th:text="${lecture.lectureName}"></td>
                 <td th:text="${lecture.user.name}"></td>
-<!--               ****************************** -->
                 <td>
                     <a href="#" th:href="@{/suGang/{lectureId}/add (lectureId=${lecture.id})}"
                        class="btn btn-primary" role="button">수강신청</a>
                 </td>
-                <!--                *****************************-->
             </tr>
             </tbody>
         </table>

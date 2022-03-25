@@ -26,6 +26,13 @@ public class SuGangRepository {
                 .getResultList();
     }
 
+    public List<SuGang> findSuGang(User user, Lecture lecture){
+        return em.createQuery("select s from SuGang s where user = :user and s.lecture = :lecture")
+                .setParameter("user", user)
+                .setParameter("lecture", lecture)
+                .getResultList();
+    }
+
 
 
 }
